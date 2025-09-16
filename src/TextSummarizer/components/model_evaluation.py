@@ -32,7 +32,7 @@ class ModelEvaluation:
         for article_batch, target_batch in tqdm(
             zip(article_batches, target_batches), total=len(article_batches)):
             
-            inputs = tokenizer(article_batch, max_length=1024,  truncation=True, 
+            inputs = tokenizer(article_batch, max_length=512,  truncation=True, 
                             padding="max_length", return_tensors="pt")
             
             summaries = model.generate(input_ids=inputs["input_ids"].to(device),
@@ -65,12 +65,12 @@ class ModelEvaluation:
         rouge_metric = evaluate.load('rouge')
 
         score = self.calculate_metric_on_test_ds(
-        dataset_samsum_pt['test'][0:10], rouge_metric, model_pegasus, tokenizer, batch_size = 2, column_text = 'dialogue', column_summary= 'summary'
+        dataset_samsum_pt['test'][0:100], rouge_metric, model_pegasus, tokenizer, batch_size = 2, column_text = 'dialogue', column_summary= 'summary'
             )
 
         rouge_dict = {rn: score[rn] for rn in rouge_names}
 
-        df = pd.DataFrame(rouge_dict, index = ['pegasus'] )
+        df = pd.DataFrame(rouge_dict, index = ['model'] )
         df.to_csv(self.config.metric_file_name, index=False)
 
         

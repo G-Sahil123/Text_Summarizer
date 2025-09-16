@@ -40,10 +40,10 @@ class ModelTrainer:
 
         trainer = Trainer(model=model_pegasus, args=trainer_args,
                   processing_class=tokenizer, data_collator=seq2seq_data_collator,
-                  train_dataset=dataset_samsum_pt["train"], 
+                  train_dataset=dataset_samsum_pt["train"].select(range(5000)), 
                   eval_dataset=dataset_samsum_pt["validation"])
         
         trainer.train()
 
-        model_pegasus.save_pretrained(os.path.join(self.config.root_dir,"pegasus-samsum-model"))
+        model_pegasus.save_pretrained(os.path.join(self.config.root_dir,"trained-samsum-model"))
         tokenizer.save_pretrained(os.path.join(self.config.root_dir,"tokenizer"))
