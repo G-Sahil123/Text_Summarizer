@@ -13,7 +13,9 @@ WORKDIR /app
 
 COPY requirements.txt .
 
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --upgrade pip \
+    && pip install --no-cache-dir torch==2.8.0+cu129 torchvision==0.23.0+cu129 --index-url https://download.pytorch.org/whl/cu129 \
+    && pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
