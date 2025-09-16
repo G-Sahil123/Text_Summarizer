@@ -25,6 +25,6 @@ model_trainer:
 model_evaluation:
   root_dir: artifacts/model_evaluation
   data_path: artifacts/data_transformation/samsum_dataset
-  model_path: artifacts/model_trainer/trained-samsum-model1
-  tokenizer_path: artifacts/model_trainer/tokenizer1
+  model_path: artifacts/model_trainer/trained-samsum-model
+  tokenizer_path: artifacts/model_trainer/tokenizer
   metric_file_name: artifacts/model_evaluation/metrics.csv  
