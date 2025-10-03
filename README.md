@@ -121,7 +121,7 @@ open up you local host and port
 ## Usage
 ### Run the full pipeline
 ```bash
-ptthon main.py
+python main.py
 ```
 This will execute all stages sequentially
 1. Data ingestion
