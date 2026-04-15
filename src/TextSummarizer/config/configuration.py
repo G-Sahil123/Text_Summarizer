@@ -42,6 +42,7 @@ class ConfigurationManager:
 
         data_validation_config = DataValidationConfig(
             root_dir=config.root_dir,
+            data_path=config.data_path,
             STATUS_FILE=config.STATUS_FILE,
             ALL_REQUIRED_FILES=config.ALL_REQUIRED_FILES,
         )

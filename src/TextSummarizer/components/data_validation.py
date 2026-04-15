@@ -8,20 +8,19 @@ class DataValiadtion:
 
 
     
-    def validate_all_files_exist(self)-> bool:
+    def validate_all_files_exist(self):
         try:
-            validation_status = False
+            validation_status = None
 
-            all_files = os.listdir(os.path.join("artifacts","data_ingestion","samsum_dataset"))
+            all_files = os.listdir(self.config.data_path)
 
-            for file in all_files:
-                if file not in self.config.ALL_REQUIRED_FILES:
-                    with open(self.config.STATUS_FILE, 'w') as f:
-                        f.write(f"Validation status: {validation_status}")
-                else:
-                    validation_status = True
-                    with open(self.config.STATUS_FILE, 'w') as f:
-                        f.write(f"Validation status: {validation_status}")
+            required_files = set(self.config.ALL_REQUIRED_FILES)
+            available_files = set(all_files)
+
+            validation_status = required_files.issubset(available_files)
+
+            with open(self.config.STATUS_FILE, 'w') as f:
+                f.write(f"Validation status: {validation_status}")
 
             return validation_status
         

@@ -11,6 +11,7 @@ class DataIngestionConfig:
 @dataclass(frozen=True)
 class DataValidationConfig:
     root_dir: Path
+    data_path: Path
     STATUS_FILE: str
     ALL_REQUIRED_FILES: list  
 
